@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=Ryzen Kernel Build [Retrofit Dynamic] by mnasibzade @ telegram
+kernel.string=EklerKernel by mnasibzade @ telegram
 do.devicecheck=1
 do.modules=1
 do.systemless=0
