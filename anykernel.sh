@@ -4,7 +4,7 @@
 ### AnyKernel setup
 # global properties
 properties() { '
-kernel.string=EklerKernel by mnasibzade @ telegram
+kernel.string=SKVKernel by MagmaSKV
 do.devicecheck=1
 do.modules=1
 do.systemless=0
@@ -83,16 +83,20 @@ fi
 if [ -d "/dev/block/mapper" ]; then
     blockdev --setrw /dev/block/mapper/system
     blockdev --setrw /dev/block/mapper/vendor
-    	ui_print "Patching for dynamic partitions..."
+    ui_print "Patching for dynamic partitions..."
     patch_cmdline "plain_partitions" ""
-else
-	ui_print "Patching for plain partitions..."
-    patch_cmdline "plain_partitions" "plain_partitions"
-fi
 
-# boot install
-dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
-write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+    # boot install
+    dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
+    write_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+else
+	  ui_print "Patching for plain partitions..."
+    patch_cmdline "plain_partitions" "plain_partitions"
+
+    # boot install
+    dump_boot; # use split_boot to skip ramdisk unpack, e.g. for devices with init_boot ramdisk
+    flash_boot; # use flash_boot to skip ramdisk repack, e.g. for devices with init_boot ramdisk
+fi
 ## end boot install
 
 
